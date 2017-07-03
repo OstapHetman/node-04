@@ -3,7 +3,7 @@ var router = express.Router();
 var mongo = require('mongodb');
 var db = require('monk')('localhost/nodeblog');
 var multer = require('multer');
-var uploads = multer({ dest: '../public/images/uploads' });
+var uploads = multer({ dest: './public/images/uploads' });
 
 router.get('/add', function(req, res, next) {
     var categories = db.get('categories');

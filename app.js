@@ -9,11 +9,11 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var db = require('monk')('localhost/nodeblog');
 var multer = require('multer');
-var upload = multer({ dest: './public/images/uploads' })
+var upload = multer({ dest: '../public/images/uploads' });
 var flash = require('connect-flash');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var posts = require('./routes/posts');
 
 var app = express();
 
@@ -48,7 +48,7 @@ app.use(expressValidator({
         return {
             param: formParam,
             msg: msg,
-            value: value
+            value: values
         };
     }
 }));
@@ -67,7 +67,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/posts', posts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
